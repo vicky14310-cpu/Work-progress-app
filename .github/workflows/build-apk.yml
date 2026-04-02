@@ -19,6 +19,9 @@ jobs:
           mkdir -p www && cp index.html www/
       - run: npm install
       - run: rm -rf android && npx cap add android
+      - name: Add permissions
+        run: |
+          sed -i 's|</manifest>|    <uses-permission android:name="android.permission.INTERNET"/>\n    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>\n    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>\n    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>\n    <uses-permission android:name="android.permission.RECORD_AUDIO"/>\n</manifest>|' android/app/src/main/AndroidManifest.xml
       - run: npx cap sync
       - name: Build
         run: |
