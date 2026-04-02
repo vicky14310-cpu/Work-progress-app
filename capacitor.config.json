@@ -1,5 +1,6 @@
 {
   "appId": "com.work.progress",
   "appName": "Work Progress",
-  "webDir": "www"
+  "webDir": "www",
+  "bundledWebRuntime": false
 }
