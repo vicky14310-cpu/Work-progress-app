@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Work Progress</string>
+    <string name="title_activity_main">Work Progress</string>
+    <string name="package_name">com.work.progress</string>
+    <string name="custom_url_scheme">com.work.progress</string>
+</resources>
