@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a237e">
+    <title>Work Progress</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-size: 14px;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+        
+        .header .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        
+        .status-bar span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .online { color: #4caf50; }
+        .offline { color: #ff9800; }
+        
+        .container {
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: #1a237e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .card-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            opacity: 0.8;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 12px;
+            background: #0a0e27;
+            color: #fff;
+            font-size: 16px;
+            -webkit-appearance: none;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid #ffd700;
+        }
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700 0%, #ffab00 100%);
+            color: #0a0e27;
+        }
+        
+        .btn-secondary {
+            background: #0a0e27;
+            color: #fff;
+        }
+        
+        .btn-danger {
+            background: #d32f2f;
+            color: #fff;
+        }
+        
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .photo-item {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            background: #0a0e27;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-item .remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 24px;
+            height: 24px;
+            background: #d32f2f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .material-item, .pole-item {
+            background: #0a0e27;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-box {
+            background: #0a0e27;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #0a0e27;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
+            transition: width 0.3s;
+        }
+        
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffd700 0%, #ffab00 100%);
+            border: none;
+            color: #0a0e27;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(255,215,0,0.4);
+            cursor: pointer;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: #1a237e;
+            border-radius: 20px;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .gps-info {
+            background: #0a0e27;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        
+        .gps-info .coords {
+            color: #4caf50;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #4caf50;
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            opacity: 0.5;
+        }
+        
+        .empty-state .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        select option {
+            background: #1a237e;
+            color: #fff;
+        }
+        
+        .voice-btn {
+            background: #0a0e27;
+            border: 2px dashed #ffd700;
+            color: #ffd700;
+        }
+        
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>⚡ POLE ERECTION TRACKER</h1>
+        <div class="title">Work Progress</div>
+        <div class="status-bar">
+            <span id="connectionStatus" class="online">🌐 ONLINE</span>
+            <span id="gpsStatus">📡 GPS: Searching...</span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number" id="photoCount">0</div>
+                <div class="stat-label">PHOTOS</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="poleCount">0</div>
+                <div class="stat-label">POLES</div>
+            </div>
+        </div>
+        
+        <!-- Progress -->
+        <div class="card">
+            <div class="card-title">📊 Today's Progress</div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span id="progressText">0% Complete</span>
+                <span id="fieldsText">0/7 fields</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+            </div>
+        </div>
+        
+        <!-- Project Details -->
+        <div class="card">
+            <div class="card-title">📋 Project Details</div>
+            <div class="form-group">
+                <label>Project Name</label>
+                <input type="text" id="projectName" placeholder="Enter project name" onchange="saveDraft()">
+            </div>
+            <div class="form-group">
+                <label>Scheme No</label>
+                <select id="schemeNo" onchange="handleSchemeChange(); saveDraft()">
+                    <option value="">Select</option>
+                    <option value="036">036</option>
+                    <option value="061">061</option>
+                    <option value="075">075</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group hidden" id="customSchemeGroup">
+                <label>Custom Scheme</label>
+                <input type="text" id="customScheme" placeholder="Enter custom scheme" onchange="saveDraft()">
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" id="workDate" onchange="saveDraft()">
+            </div>
+            <div class="form-group">
+                <label>Village Name</label>
+                <input type="text" id="villageName" placeholder="Enter village name" onchange="saveDraft()">
+            </div>
+            <div class="form-group">
+                <label>Feeder Name</label>
+                <input type="text" id="feederName" placeholder="Enter feeder name" onchange="saveDraft()">
+            </div>
+            <div class="form-group">
+                <label>Supervisor</label>
+                <input type="text" id="supervisor" placeholder="Enter supervisor name" onchange="saveDraft()">
+            </div>
+            <div class="form-group">
+                <label>Contractor</label>
+                <input type="text" id="contractor" placeholder="Enter contractor name" onchange="saveDraft()">
+            </div>
+            <div class="form-group">
+                <label>Work Description</label>
+                <textarea id="workDesc" rows="3" placeholder="Describe the work..." onchange="saveDraft()"></textarea>
+            </div>
+            <button class="btn voice-btn" onclick="startVoiceInput()">
+                🎤 Voice Input
+            </button>
+        </div>
+        
+        <!-- GPS Info -->
+        <div class="card">
+            <div class="card-title">📍 GPS Location</div>
+            <div class="gps-info">
+                <div>Latitude: <span class="coords" id="lat">--</span></div>
+                <div>Longitude: <span class="coords" id="lng">--</span></div>
+                <div>Accuracy: <span id="accuracy">--</span> meters</div>
+                <div>Last Update: <span id="gpsTime">--</span></div>
+            </div>
+            <button class="btn btn-secondary" onclick="refreshGPS()" style="margin-top: 15px;">
+                🔄 Refresh GPS
+            </button>
+        </div>
+        
+        <!-- Photos -->
+        <div class="card">
+            <div class="card-title">📸 Photo Capture</div>
+            <div id="photoEmpty" class="empty-state">
+                <div class="icon">📷</div>
+                <div>No photos captured yet</div>
+                <div style="font-size: 12px; margin-top: 10px;">GPS coordinates auto-captured with each photo</div>
+            </div>
+            <div class="photo-grid" id="photoGrid"></div>
+            <button class="btn btn-primary" onclick="capturePhoto()" style="margin-top: 15px;">
+                📷 Capture Photo
+            </button>
+        </div>
+        
+        <!-- Materials -->
+        <div class="card">
+            <div class="card-title">🧱 Material Used (<span id="materialCount">0</span> ITEMS)</div>
+            <div id="materialList"></div>
+            <button class="btn btn-secondary" onclick="showAddMaterial()">
+                ➕ Add Material
+            </button>
+        </div>
+        
+        <!-- Pole Work -->
+        <div class="card">
+            <div class="card-title">🏗 Pole Work Details (<span id="poleWorkCount">0</span> POLES)</div>
+            <div id="poleList"></div>
+            <button class="btn btn-secondary" onclick="showAddPole()">
+                ➕ Add Pole
+            </button>
+        </div>
+        
+        <!-- Actions -->
+        <div style="display: flex; gap: 10px;">
+            <button class="btn btn-danger" onclick="showClearConfirm()" style="flex: 1;">
+                🗑 Clear Draft
+            </button>
+        </div>
+        
+        <div style="text-align: center; padding: 30px; font-size: 12px; opacity: 0.5;">
+            ⚡ Work Progress App | Offline Ready
+        </div>
+    </div>
+    
+    <!-- Submit FAB -->
+    <button class="fab" onclick="finalSubmit()" title="Final Submit">
+        ✓
+    </button>
+    
+    <!-- Add Material Modal -->
+    <div class="modal" id="materialModal">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 20px;">Add Material</h3>
+            <div class="form-group">
+                <label>Material Name</label>
+                <input type="text" id="matName" placeholder="e.g., Cement, Steel">
+            </div>
+            <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" id="matQty" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label>Unit</label>
+                <select id="matUnit">
+                    <option value="bags">Bags</option>
+                    <option value="kg">KG</option>
+                    <option value="pcs">Pieces</option>
+                    <option value="meters">Meters</option>
+                    <option value="liters">Liters</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="addMaterial()">Add</button>
+            <button class="btn btn-secondary" onclick="closeModal('materialModal')">Cancel</button>
+        </div>
+    </div>
+    
+    <!-- Add Pole Modal -->
+    <div class="modal" id="poleModal">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 20px;">Add Pole</h3>
+            <div class="form-group">
+                <label>Pole Number</label>
+                <input type="text" id="poleNum" placeholder="e.g., P-001">
+            </div>
+            <div class="form-group">
+                <label>Pole Type</label>
+                <select id="poleType">
+                    <option value="concrete">Concrete</option>
+                    <option value="steel">Steel</option>
+                    <option value="wooden">Wooden</option>
+                    <option value="composite">Composite</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select id="poleStatus">
+                    <option value="erected">Erected</option>
+                    <option value="foundation">Foundation Done</option>
+                    <option value="wiring">Wiring Complete</option>
+                    <option value="testing">Testing Done</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="addPole()">Add Pole</button>
+            <button class="btn btn-secondary" onclick="closeModal('poleModal')">Cancel</button>
+        </div>
+    </div>
+    
+    <!-- Clear Confirm Modal -->
+    <div class="modal" id="clearModal">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 15px; color: #ff9800;">⚠️ Clear Draft?</h3>
+            <p style="margin-bottom: 20px; opacity: 0.8; line-height: 1.6;">
+                This will erase all entered data, photos, and materials. This cannot be undone.
+            </p>
+            <button class="btn btn-danger" onclick="clearAll()">Clear All</button>
+            <button class="btn btn-secondary" onclick="closeModal('clearModal')">Cancel</button>
+        </div>
+    </div>
+    
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ==================== DATA STORAGE ====================
+        let appData = {
+            project: {},
+            photos: [],
+            materials: [],
+            poles: [],
+            gps: null
+        };
+        
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDraft();
+            startGPS();
+            updateStats();
+            updateProgress();
+            checkConnection();
+            
+            // Set today's date
+            document.getElementById('workDate').valueAsDate = new Date();
+            
+            // Check connection status
+            setInterval(checkConnection, 5000);
+        });
+        
+        // ==================== LOCAL STORAGE ====================
+        function saveDraft() {
+            appData.project = {
+                name: document.getElementById('projectName').value,
+                scheme: document.getElementById('schemeNo').value,
+                customScheme: document.getElementById('customScheme').value,
+                date: document.getElementById('workDate').value,
+                village: document.getElementById('villageName').value,
+                feeder: document.getElementById('feederName').value,
+                supervisor: document.getElementById('supervisor').value,
+                contractor: document.getElementById('contractor').value,
+                description: document.getElementById('workDesc').value
+            };
+            localStorage.setItem('poleTrackerDraft', JSON.stringify(appData));
+            showToast('Draft saved');
+            updateProgress();
+        }
+        
+        function loadDraft() {
+            const saved = localStorage.getItem('poleTrackerDraft');
+            if (saved) {
+                appData = JSON.parse(saved);
+                
+                // Restore form
+                const p = appData.project || {};
+                document.getElementById('projectName').value = p.name || '';
+                document.getElementById('schemeNo').value = p.scheme || '';
+                document.getElementById('customScheme').value = p.customScheme || '';
+                document.getElementById('workDate').value = p.date || '';
+                document.getElementById('villageName').value = p.village || '';
+                document.getElementById('feederName').value = p.feeder || '';
+                document.getElementById('supervisor').value = p.supervisor || '';
+                document.getElementById('contractor').value = p.contractor || '';
+                document.getElementById('workDesc').value = p.description || '';
+                
+                handleSchemeChange();
+                renderPhotos();
+                renderMaterials();
+                renderPoles();
+            }
+        }
+        
+        function clearAll() {
+            localStorage.removeItem('poleTrackerDraft');
+            appData = { project: {}, photos: [], materials: [], poles: [], gps: null };
+            location.reload();
+        }
+        
+        // ==================== GPS ====================
+        function startGPS() {
+            if (!navigator.geolocation) {
+                document.getElementById('gpsStatus').textContent = '❌ GPS Not Supported';
+                return;
+            }
+            
+            navigator.geolocation.watchPosition(
+                (position) => {
+                    appData.gps = {
+                        lat: position.coords.latitude.toFixed(6),
+                        lng: position.coords.longitude.toFixed(6),
+                        accuracy: Math.round(position.coords.accuracy),
+                        timestamp: new Date().toLocaleTimeString()
+                    };
+                    
+                    document.getElementById('lat').textContent = appData.gps.lat;
+                    document.getElementById('lng').textContent = appData.gps.lng;
+                    document.getElementById('accuracy').textContent = appData.gps.accuracy;
+                    document.getElementById('gpsTime').textContent = appData.gps.timestamp;
+                    document.getElementById('gpsStatus').textContent = '📡 GPS: Active';
+                    
+                    saveDraft();
+                },
+                (error) => {
+                    document.getElementById('gpsStatus').textContent = '❌ GPS: ' + error.message;
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
+        }
+        
+        function refreshGPS() {
+            document.getElementById('gpsStatus').textContent = '📡 GPS: Refreshing...';
+            startGPS();
+        }
+        
+        // ==================== CAMERA ====================
+        async function capturePhoto() {
+            // Try Capacitor Camera first, fallback to native
+            if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Camera) {
+                try {
+                    const image = await window.Capacitor.Plugins.Camera.getPhoto({
+                        quality: 90,
+                        allowEditing: false,
+                        resultType: 'base64',
+                        source: 'CAMERA'
+                    });
+                    
+                    addPhotoToGallery('data:image/jpeg;base64,' + image.base64String);
+                    return;
+                } catch (e) {
+                    console.log('Capacitor camera failed, trying native');
+                }
+            }
+            
+            // Fallback to file input
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.capture = 'environment';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        addPhotoToGallery(evt.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+        
+        function addPhotoToGallery(dataUrl) {
+            const photo = {
+                id: Date.now(),
+                data: dataUrl,
+                gps: {...appData.gps},
+                timestamp: new Date().toISOString()
+            };
+            
+            appData.photos.push(photo);
+            saveDraft();
+            renderPhotos();
+            updateStats();
+            showToast('Photo captured with GPS');
+        }
+        
+        function renderPhotos() {
+            const grid = document.getElementById('photoGrid');
+            const empty = document.getElementById('photoEmpty');
+            
+            if (appData.photos.length === 0) {
+                grid.innerHTML = '';
+                empty.classList.remove('hidden');
+                return;
+            }
+            
+            empty.classList.add('hidden');
+            grid.innerHTML = appData.photos.map(p => `
+                <div class="photo-item">
+                    <img src="${p.data}" onclick="viewPhoto(${p.id})">
+                    <div class="remove" onclick="removePhoto(${p.id}, event)">×</div>
+                </div>
+            `).join('');
+        }
+        
+        function removePhoto(id, e) {
+            e.stopPropagation();
+            appData.photos = appData.photos.filter(p => p.id !== id);
+            saveDraft();
+            renderPhotos();
+            updateStats();
+        }
+        
+        function viewPhoto(id) {
+            const photo = appData.photos.find(p => p.id === id);
+            if (photo) {
+                // Simple view - in real app, open full screen
+                showToast(`Photo at ${photo.gps?.lat || '--'}, ${photo.gps?.lng || '--'}`);
+            }
+        }
+        
+        // ==================== MATERIALS ====================
+        function showAddMaterial() {
+            document.getElementById('materialModal').classList.add('active');
+        }
+        
+        function addMaterial() {
+            const name = document.getElementById('matName').value.trim();
+            const qty = document.getElementById('matQty').value;
+            const unit = document.getElementById('matUnit').value;
+            
+            if (!name || !qty) {
+                showToast('Please fill all fields');
+                return;
+            }
+            
+            appData.materials.push({
+                id: Date.now(),
+                name, qty: parseFloat(qty), unit
+            });
+            
+            document.getElementById('matName').value = '';
+            document.getElementById('matQty').value = '';
+            
+            closeModal('materialModal');
+            saveDraft();
+            renderMaterials();
+            updateStats();
+            showToast('Material added');
+        }
+        
+        function renderMaterials() {
+            const list = document.getElementById('materialList');
+            document.getElementById('materialCount').textContent = appData.materials.length;
+            
+            if (appData.materials.length === 0) {
+                list.innerHTML = '<div class="empty-state"><div class="icon">🧱</div><div>No materials added</div></div>';
+                return;
+            }
+            
+            list.innerHTML = appData.materials.map(m => `
+                <div class="material-item">
+                    <div>
+                        <div style="font-weight: 600;">${m.name}</div>
+                        <div style="font-size: 12px; opacity: 0.7;">${m.qty} ${m.unit}</div>
+                    </div>
+                    <button onclick="removeMaterial(${m.id})" style="background: #d32f2f; color: #fff; border: none; padding: 8px 16px; border-radius: 8px;">Remove</button>
+                </div>
+            `).join('');
+        }
+        
+        function removeMaterial(id) {
+            appData.materials = appData.materials.filter(m => m.id !== id);
+            saveDraft();
+            renderMaterials();
+            updateStats();
+        }
+        
+        // ==================== POLES ====================
+        function showAddPole() {
+            document.getElementById('poleModal').classList.add('active');
+        }
+        
+        function addPole() {
+            const num = document.getElementById('poleNum').value.trim();
+            const type = document.getElementById('poleType').value;
+            const status = document.getElementById('poleStatus').value;
+            
+            if (!num) {
+                showToast('Please enter pole number');
+                return;
+            }
+            
+            appData.poles.push({
+                id: Date.now(),
+                number: num, type, status,
+                gps: {...appData.gps}
+            });
+            
+            document.getElementById('poleNum').value = '';
+            
+            closeModal('poleModal');
+            saveDraft();
+            renderPoles();
+            updateStats();
+            showToast('Pole added');
+        }
+        
+        function renderPoles() {
+            const list = document.getElementById('poleList');
+            document.getElementById('poleWorkCount').textContent = appData.poles.length;
+            
+            if (appData.poles.length === 0) {
+                list.innerHTML = '<div class="empty-state"><div class="icon">🏗</div><div>No poles added</div></div>';
+                return;
+            }
+            
+            list.innerHTML = appData.poles.map(p => `
+                <div class="pole-item">
+                    <div>
+                        <div style="font-weight: 600;">${p.number}</div>
+                        <div style="font-size: 12px; opacity: 0.7;">${p.type} • ${p.status}</div>
+                        <div style="font-size: 11px; color: #4caf50; margin-top: 4px;">
+                            📍 ${p.gps?.lat || '--'}, ${p.gps?.lng || '--'}
+                        </div>
+                    </div>
+                    <button onclick="removePole(${p.id})" style="background: #d32f2f; color: #fff; border: none; padding: 8px 16px; border-radius: 8px;">Remove</button>
+                </div>
+            `).join('');
+        }
+        
+        function removePole(id) {
+            appData.poles = appData.poles.filter(p => p.id !== id);
+            saveDraft();
+            renderPoles();
+            updateStats();
+        }
+        
+        // ==================== UI HELPERS ====================
+        function handleSchemeChange() {
+            const scheme = document.getElementById('schemeNo').value;
+            document.getElementById('customSchemeGroup').classList.toggle('hidden', scheme !== 'other');
+        }
+        
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+        
+        function showClearConfirm() {
+            document.getElementById('clearModal').classList.add('active');
+        }
+        
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+        
+        function updateStats() {
+            document.getElementById('photoCount').textContent = appData.photos.length;
+            document.getElementById('poleCount').textContent = appData.poles.length;
+        }
+        
+        function updateProgress() {
+            const fields = ['projectName', 'schemeNo', 'workDate', 'villageName', 'feederName', 'supervisor', 'contractor'];
+            let filled = 0;
+            
+            fields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.value.trim()) filled++;
+            });
+            
+            // Custom scheme counts if selected
+            if (document.getElementById('schemeNo').value === 'other' && document.getElementById('customScheme').value.trim()) {
+                filled++;
+            }
+            
+            const total = 7;
+            const percent = Math.round((filled / total) * 100);
+            
+            document.getElementById('progressText').textContent = percent + '% Complete';
+            document.getElementById('fieldsText').textContent = filled + '/' + total + ' fields';
+            document.getElementById('progressBar').style.width = percent + '%';
+        }
+        
+        function checkConnection() {
+            const status = document.getElementById('connectionStatus');
+            if (navigator.onLine) {
+                status.textContent = '🌐 ONLINE';
+                status.className = 'online';
+            } else {
+                status.textContent = '✈️ OFFLINE';
+                status.className = 'offline';
+            }
+        }
+        
+        // ==================== VOICE INPUT ====================
+        function startVoiceInput() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                showToast('Voice input not supported on this device');
+                return;
+            }
+            
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            
+            recognition.lang = 'en-IN';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            
+            recognition.onstart = () => showToast('Listening... Speak now');
+            recognition.onresult = (e) => {
+                const text = e.results[0][0].transcript;
+                const desc = document.getElementById('workDesc');
+                desc.value = (desc.value ? desc.value + ' ' : '') + text;
+                saveDraft();
+                showToast('Voice captured');
+            };
+            recognition.onerror = () => showToast('Voice recognition failed');
+            
+            recognition.start();
+        }
+        
+        // ==================== FINAL SUBMIT ====================
+        function finalSubmit() {
+            if (appData.poles.length === 0 && appData.photos.length === 0) {
+                showToast('Please add at least one pole or photo');
+                return;
+            }
+            
+            // Create export data
+            const exportData = {
+                ...appData,
+                submittedAt: new Date().toISOString(),
+                appVersion: '1.0.0'
+            };
+            
+            // Save to localStorage as "submitted"
+            const submissions = JSON.parse(localStorage.getItem('poleTrackerSubmissions') || '[]');
+            submissions.push(exportData);
+            localStorage.setItem('poleTrackerSubmissions', JSON.stringify(submissions));
+            
+            // Clear draft
+            localStorage.removeItem('poleTrackerDraft');
+            
+            showToast('✅ Submitted successfully!');
+            setTimeout(() => location.reload(), 1500);
+        }
+        
+        // Close modals on outside click
+        document.querySelectorAll('.modal').forEach(m => {
+            m.addEventListener('click', (e) => {
+                if (e.target === m) m.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
