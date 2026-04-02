@@ -1,22 +1,11 @@
 {
   "name": "work-progress-app",
   "version": "1.0.0",
-  "description": "Work Progress - Pole Erection Tracker",
-  "scripts": {
-    "build": "mkdir -p www && cp index.html www/ && cp -r assets www/ 2>/dev/null || true",
-    "sync": "npx cap sync",
-    "android": "npx cap open android",
-    "build:apk": "cd android && ./gradlew assembleDebug"
-  },
   "dependencies": {
-    "@capacitor/android": "^5.0.0",
-    "@capacitor/camera": "^5.0.0",
-    "@capacitor/core": "^5.0.0",
-    "@capacitor/geolocation": "^5.0.0",
-    "@capacitor/preferences": "^5.0.0",
-    "@capacitor/splash-screen": "^5.0.0"
+    "@capacitor/android": "5.5.1",
+    "@capacitor/core": "5.5.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "^5.0.0"
+    "@capacitor/cli": "5.5.1"
   }
 }
