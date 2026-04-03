@@ -20,11 +20,7 @@
 --font:'Outfit',system-ui,sans-serif;--mono:'Space Mono',monospace;
 --transition:all .25s cubic-bezier(.4,0,.2,1);
 }
-.dark-mode{
---bg:#0D1A0F;--bg2:#142216;--bg3:#1C2E1F;--bg4:#2A4030;
---txt:#E2EDE4;--txt2:#9AB89E;--txt3:#6A8A6E;
---shadow:0 2px 12px rgba(0,0,0,.3);--green-glow:rgba(76,175,80,.15);
-}
+.dark-mode{--bg:#0D1A0F;--bg2:#142216;--bg3:#1C2E1F;--bg4:#2A4030;--txt:#E2EDE4;--txt2:#9AB89E;--txt3:#6A8A6E;--shadow:0 2px 12px rgba(0,0,0,.3);--green-glow:rgba(76,175,80,.15)}
 html{font-size:16px;-webkit-tap-highlight-color:transparent}
 body{font-family:var(--font);background:var(--bg);color:var(--txt);min-height:100dvh;overflow-x:hidden;padding-bottom:100px}
 .header{position:sticky;top:0;z-index:100;background:var(--green);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(46,125,50,.3)}
@@ -99,7 +95,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--txt);min-height:10
 .record-info{font-size:11px;color:var(--txt2)}
 .record-stats{display:flex;gap:10px;margin-top:4px;font-family:var(--mono);font-size:10px;color:var(--txt3)}
 .no-records{text-align:center;padding:30px;color:var(--txt3);font-size:12px}
-/* DASHBOARD */
 .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
 .dash-card{padding:14px;border-radius:var(--radius-sm);text-align:center;border:1px solid var(--bg4)}
 .dash-card .dash-num{font-family:var(--mono);font-size:28px;font-weight:800;line-height:1}
@@ -113,21 +108,40 @@ body{font-family:var(--font);background:var(--bg);color:var(--txt);min-height:10
 .scheme-bar-fill{flex:1;height:8px;border-radius:4px;background:var(--bg3);overflow:hidden}
 .scheme-bar-fill div{height:100%;border-radius:4px;background:var(--green);transition:width .5s ease}
 .scheme-bar-label{font-family:var(--mono);font-size:10px;color:var(--txt3);min-width:35px;text-align:right}
-/* MAINTENANCE */
 .maint-item{padding:10px 12px;border:1px solid var(--bg4);border-radius:var(--radius-sm);margin-bottom:8px;background:var(--bg)}
 .maint-item .maint-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
 .maint-type{font-size:11px;font-weight:700;color:var(--orange)}
 .maint-date{font-family:var(--mono);font-size:10px;color:var(--txt3)}
 .maint-loc{font-size:11px;color:var(--txt2)}
 .maint-desc{font-size:11px;color:var(--txt3);margin-top:2px}
+.maint-gps{font-family:var(--mono);font-size:9px;color:var(--txt3);margin-top:2px}
 .priority-high{border-left:3px solid var(--red)}
 .priority-medium{border-left:3px solid var(--orange)}
 .priority-low{border-left:3px solid var(--green)}
+.report-overlay{position:fixed;inset:0;z-index:400;background:var(--bg);overflow-y:auto;display:none;padding-bottom:70px}
+.report-overlay.open{display:block}
+.report-hdr{position:sticky;top:0;z-index:10;background:var(--green);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(46,125,50,.3)}
+.report-hdr h3{color:#fff;font-size:14px;font-weight:700}
+.report-hdr button{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font)}
+.rp-project{margin:10px 12px;padding:14px;background:var(--green);border-radius:var(--radius);color:#fff}
+.rp-project h2{font-size:16px;font-weight:800;margin-bottom:2px;color:#fff}
+.rp-sub{font-size:11px;opacity:.8;font-family:var(--mono)}
+.rp-entry{margin:6px 12px;background:var(--bg2);border-radius:var(--radius);border:1px solid var(--bg4);overflow:hidden}
+.rp-entry-head{padding:10px 12px;background:var(--green-glow);border-bottom:1px solid var(--bg3);display:flex;justify-content:space-between;align-items:center}
+.rp-entry-body{padding:10px 12px;font-size:11px}
+.rp-row{display:flex;margin-bottom:3px}.rp-lbl{font-weight:700;min-width:80px;color:var(--txt2)}.rp-val{color:var(--txt);flex:1}
+.rp-section{font-size:11px;font-weight:700;color:var(--green);margin:8px 0 4px;padding-top:6px;border-top:1px solid var(--bg3)}
+.rp-pole{display:grid;grid-template-columns:45px 1fr 1fr;gap:4px;font-size:11px;padding:3px 0;border-bottom:1px dashed var(--bg3)}
+.rp-pole-hdr{font-weight:700;color:var(--txt2);font-size:10px;border-bottom:1px solid var(--bg4)}
+.rp-gps{font-family:var(--mono);font-size:10px;color:var(--txt3);padding:2px 0}
+.rp-mat{font-size:11px;padding:2px 0;color:var(--txt2)}
+.report-acts{position:fixed;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,var(--bg) 30%);padding-top:20px;display:flex;gap:8px}
+.report-acts .btn{flex:1}
 .sticky-submit{position:fixed;bottom:0;left:0;right:0;z-index:99;padding:8px 12px;background:linear-gradient(transparent,var(--bg) 30%);padding-top:24px}
 .sticky-submit .btn{font-size:14px;padding:14px;border-radius:var(--radius)}
 .footer{text-align:center;padding:12px;margin-bottom:60px}
 .footer-text{font-family:var(--mono);font-size:9px;color:var(--txt3);display:flex;align-items:center;justify-content:center;gap:8px}
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 20px;border-radius:30px;font-size:12px;font-weight:600;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 20px;border-radius:30px;font-size:12px;font-weight:600;z-index:500;opacity:0;transition:opacity .3s;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.2)}
 .toast.show{opacity:1}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;display:none;place-items:center;backdrop-filter:blur(4px)}
 .modal-overlay.open{display:grid}
@@ -135,7 +149,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--txt);min-height:10
 .modal h3{font-size:15px;margin-bottom:8px}
 .modal p{font-size:12px;color:var(--txt2);margin-bottom:16px}
 .modal-btns{display:flex;gap:8px}.modal-btns .btn{flex:1}
-.dark-mode .header{background:linear-gradient(135deg,#1B5E20,#2E7D32)}
+.dark-mode .header,.dark-mode .report-hdr{background:linear-gradient(135deg,#1B5E20,#2E7D32)}
 .dark-mode .field input,.dark-mode .field select,.dark-mode .field textarea,.dark-mode .mat-row input,.dark-mode .mat-row select,.dark-mode .pole-row input,.dark-mode .pole-row select{background:var(--bg)}
 </style>
 </head>
@@ -158,13 +172,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--txt);min-height:10
 <div class="status-chip"><span class="dot dot-red" id="dotGPS"></span><span id="statusGPS">📍 GPS...</span></div>
 </div>
 <div class="tab-bar">
-<button class="tab-btn active" onclick="switchTab('dash')">📊 Dash</button>
+<button class="tab-btn active" onclick="switchTab('dash')">📊</button>
 <button class="tab-btn" onclick="switchTab('entry')">📝 Entry</button>
 <button class="tab-btn" onclick="switchTab('maint')">🔧 Maint</button>
-<button class="tab-btn" onclick="switchTab('records')">📁 Records</button>
+<button class="tab-btn" onclick="switchTab('records')">📁</button>
+<button class="tab-btn" onclick="switchTab('report')">📄</button>
 </div>
 
-<!-- DASHBOARD TAB -->
 <div class="tab-content active" id="tabDash">
 <div class="section"><div class="card"><div class="card-head"><h2><span>📊</span> Dashboard</h2><div class="card-badge" id="dashDate">--</div></div>
 <div class="card-body">
@@ -175,17 +189,16 @@ body{font-family:var(--font);background:var(--bg);color:var(--txt);min-height:10
 <div class="dash-card dash-orange"><div class="dash-num" id="dashReports">0</div><div class="dash-label">Reports</div></div>
 </div>
 <div class="dash-grid">
-<div class="dash-card dash-green"><div class="dash-num" id="dashMaint">0</div><div class="dash-label">Maint Jobs</div></div>
+<div class="dash-card dash-orange"><div class="dash-num" id="dashMaint">0</div><div class="dash-label">Maint Jobs</div></div>
 <div class="dash-card dash-red"><div class="dash-num" id="dashPending">0</div><div class="dash-label">Pending</div></div>
 </div>
 </div></div></div>
 <div class="section"><div class="card"><div class="card-head"><h2><span>📈</span> Scheme Progress</h2></div>
-<div class="card-body" id="schemeProgress"><div class="no-records">Submit reports to see scheme progress</div></div></div></div>
+<div class="card-body" id="schemeProgress"><div class="no-records">Submit reports to see progress</div></div></div></div>
 <div class="section"><div class="card"><div class="card-head"><h2><span>🕐</span> Recent Activity</h2></div>
 <div class="card-body" id="recentActivity"><div class="no-records">No activity yet</div></div></div></div>
 </div>
 
-<!-- ENTRY TAB -->
 <div class="tab-content" id="tabEntry">
 <div class="section"><div class="card"><div class="card-head"><h2><span>📋</span> Project Details</h2><div class="card-badge" id="badgeScheme">---</div></div>
 <div class="card-body">
@@ -210,9 +223,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--txt);min-height:10
 <div class="section"><div class="card"><div class="card-body"><button class="btn btn-danger" onclick="showClearModal()">🗑 Clear Draft</button></div></div></div>
 </div>
 
-<!-- MAINTENANCE TAB -->
 <div class="tab-content" id="tabMaint">
-<div class="section"><div class="card"><div class="card-head"><h2><span>🔧</span> New Maintenance Entry</h2></div>
+<div class="section"><div class="card"><div class="card-head"><h2><span>🔧</span> New Maintenance</h2></div>
 <div class="card-body">
 <div class="row2">
 <div class="field"><label>Type</label><select id="maintType"><option>Fault Repair</option><option>Line Maintenance</option><option>Transformer Repair</option><option>Pole Replacement</option><option>Conductor Repair</option><option>Earthing Work</option><option>Tree Cutting</option><option>Insulator Change</option><option>Other</option></select></div>
@@ -227,28 +239,45 @@ body{font-family:var(--font);background:var(--bg);color:var(--txt);min-height:10
 <div class="field"><label>Feeder</label><input type="text" id="maintFeeder" placeholder="Feeder name"></div>
 </div>
 <div class="field"><label>Assigned To</label><input type="text" id="maintAssigned" placeholder="Worker / Team name"></div>
-<div class="field"><label>Description</label><textarea id="maintDesc" placeholder="Describe the maintenance work..."></textarea></div>
-<div class="field"><label>Material Used</label><input type="text" id="maintMaterial" placeholder="e.g. 2x Insulator, 50m Wire"></div>
+<div class="field"><label>Description</label><textarea id="maintDesc" placeholder="Describe maintenance work..."></textarea></div>
+<div style="margin-bottom:12px">
+<label style="display:block;font-size:10px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px">🧱 MATERIALS USED</label>
+<div class="mat-header"><span>Material</span><span>Qty</span><span>Unit</span><span></span></div>
+<div id="maintMaterialRows"></div>
+<button class="btn btn-secondary btn-sm" onclick="addMaintMaterialRow()" style="margin-top:6px">➕ Add Material</button>
+</div>
+<div style="margin-bottom:12px">
+<label style="display:block;font-size:10px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px">📸 PHOTOS</label>
+<input type="file" accept="image/*" capture="environment" id="maintCameraInput" multiple style="display:none">
+<button class="btn btn-secondary btn-sm" onclick="document.getElementById('maintCameraInput').click()">📷 Capture Maintenance Photo</button>
+<div class="photo-grid" id="maintPhotoGrid" style="margin-top:8px"></div>
+</div>
 <button class="btn btn-orange" onclick="saveMaintenance()">🔧 Save Maintenance Record</button>
 </div></div></div>
 <div class="section"><div class="card"><div class="card-head"><h2><span>📋</span> Maintenance Records</h2><div class="card-badge" id="badgeMaint">0</div></div>
 <div class="card-body">
-<div id="maintList"><div class="no-records">No maintenance records yet</div></div>
+<div id="maintList"><div class="no-records">No maintenance records</div></div>
 <div style="display:flex;gap:8px;margin-top:10px">
 <button class="btn btn-yellow btn-sm" onclick="exportMaintExcel()" style="flex:1">📊 Export Excel</button>
 <button class="btn btn-danger btn-sm" onclick="clearAllMaint()" style="flex:1">🗑 Clear All</button>
-</div>
-</div></div></div>
+</div></div></div></div>
 </div>
 
-<!-- RECORDS TAB -->
 <div class="tab-content" id="tabRecords">
 <div class="section"><div class="card"><div class="card-head"><h2><span>📁</span> Pole Work Records</h2><div class="card-badge" id="badgeRecords">0</div></div>
 <div class="card-body"><div id="recordsList"><div class="no-records">No saved records yet.</div></div>
 <div style="display:flex;gap:8px;margin-top:10px">
-<button class="btn btn-yellow btn-sm" onclick="exportAllExcel()" style="flex:1">📊 Export Excel</button>
-<button class="btn btn-danger btn-sm" onclick="clearAllRecords()" style="flex:1">🗑 Clear All</button>
+<button class="btn btn-yellow btn-sm" onclick="exportAllExcel()" style="flex:1">📊 Excel</button>
+<button class="btn btn-danger btn-sm" onclick="clearAllRecords()" style="flex:1">🗑 Clear</button>
 </div></div></div></div>
+</div>
+
+<div class="tab-content" id="tabReport">
+<div class="section"><div class="card"><div class="card-head"><h2><span>📄</span> Project Report</h2></div>
+<div class="card-body">
+<div class="field"><label>Filter by Project</label><select id="reportFilter" onchange="generateReport()"><option value="all">All Projects</option></select></div>
+<div id="reportContent"><div class="no-records">Submit entries to see project reports here</div></div>
+</div></div></div>
 </div>
 
 <div class="footer"><div class="footer-text"><span>⚡ AKA Enterprises</span><span>|</span><span id="footerDraft">Draft Saved</span><span>|</span><span id="footerOffline">Offline Ready</span></div></div>
@@ -256,50 +285,56 @@ body{font-family:var(--font);background:var(--bg);color:var(--txt);min-height:10
 <div class="toast" id="toast"></div>
 <div class="modal-overlay" id="clearModal"><div class="modal"><h3>⚠️ Clear Draft?</h3><p>Erase all data. Cannot be undone.</p><div class="modal-btns"><button class="btn btn-secondary btn-sm" onclick="closeClearModal()">Cancel</button><button class="btn btn-danger btn-sm" onclick="clearDraft()">Clear All</button></div></div></div>
 <div class="modal-overlay" id="recordModal"><div class="modal" style="max-width:90%;text-align:left;max-height:80vh;overflow-y:auto"><div id="recordDetail"></div><div class="modal-btns" style="margin-top:12px"><button class="btn btn-secondary btn-sm" onclick="closeRecordModal()">Close</button><button class="btn btn-yellow btn-sm" id="exportSingleBtn">📊 Excel</button></div></div></div>
-
 <script>
 const STATE_KEY='poletracker_draft',RECORDS_KEY='poletracker_records',MAINT_KEY='poletracker_maint';
 let appState={projectName:'',schemeNo:'',schemeOther:'',villageName:'',feederName:'',supervisorName:'',contractorName:'',workDate:'',workDesc:'',photos:[],materials:[],poles:[],savedAt:null};
+let maintPhotos=[];
 let deferredPrompt=null;
+
 document.addEventListener('DOMContentLoaded',()=>{loadDraft();initDate();initGPS();initServiceWorker();initOnlineStatus();initSchemeWatcher();initAutoSave();updateAllCounters();renderRecords();renderMaint();updateDashboard()});
+
 function initDate(){const d=document.getElementById('workDate');if(!d.value)d.value=new Date().toISOString().split('T')[0];const md=document.getElementById('maintDate');if(!md.value)md.value=new Date().toISOString().split('T')[0]}
 function initServiceWorker(){if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{})}
 function initOnlineStatus(){const u=()=>{const o=navigator.onLine;document.getElementById('dotOnline').className='dot '+(o?'dot-green':'dot-red');document.getElementById('statusOnline').textContent=o?'ONLINE':'OFFLINE';document.getElementById('footerOffline').textContent=o?'Online':'Offline Ready'};window.addEventListener('online',u);window.addEventListener('offline',u);u()}
 function initSchemeWatcher(){const s=document.getElementById('schemeNo');s.addEventListener('change',()=>{document.getElementById('schemeOtherWrap').style.display=s.value==='Other'?'block':'none';const v=s.value==='Other'?document.getElementById('schemeOther').value:s.value;document.getElementById('headerScheme').textContent='SCHEME: '+(v||'---');document.getElementById('badgeScheme').textContent=v||'---'});document.getElementById('schemeOther').addEventListener('input',()=>{const v=document.getElementById('schemeOther').value;document.getElementById('headerScheme').textContent='SCHEME: '+(v||'---');document.getElementById('badgeScheme').textContent=v||'---'})}
 
-function switchTab(t){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));const tabs={'dash':0,'entry':1,'maint':2,'records':3};document.querySelectorAll('.tab-btn')[tabs[t]].classList.add('active');document.getElementById('tab'+t.charAt(0).toUpperCase()+t.slice(1)).classList.add('active');document.getElementById('stickySubmit').style.display=t==='entry'?'block':'none';if(t==='dash')updateDashboard();if(t==='records')renderRecords();if(t==='maint')renderMaint()}
+function switchTab(t){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));const tabs={'dash':0,'entry':1,'maint':2,'records':3,'report':4};document.querySelectorAll('.tab-btn')[tabs[t]].classList.add('active');document.getElementById('tab'+t.charAt(0).toUpperCase()+t.slice(1)).classList.add('active');document.getElementById('stickySubmit').style.display=t==='entry'?'block':'none';if(t==='dash')updateDashboard();if(t==='records')renderRecords();if(t==='maint')renderMaint();if(t==='report')generateReport()}
 
 function initAutoSave(){document.querySelectorAll('[data-save]').forEach(el=>{el.addEventListener('input',()=>{collectState();saveDraft()});el.addEventListener('change',()=>{collectState();saveDraft()})})}
 function collectState(){appState.projectName=gv('projectName');appState.schemeNo=gv('schemeNo');appState.schemeOther=gv('schemeOther');appState.villageName=gv('villageName');appState.feederName=gv('feederName');appState.supervisorName=gv('supervisorName');appState.contractorName=gv('contractorName');appState.workDate=gv('workDate');appState.workDesc=gv('workDesc');collectMaterials();collectPoles()}
 function collectMaterials(){const rows=document.querySelectorAll('#materialRows .mat-row');appState.materials=[];rows.forEach(r=>{const i=r.querySelectorAll('input,select');if(i[0].value)appState.materials.push({name:i[0].value,qty:i[1].value,unit:i[2].value})})}
 function collectPoles(){const rows=document.querySelectorAll('#poleRows .pole-row');appState.poles=[];rows.forEach(r=>{const i=r.querySelectorAll('input,select');if(i[0].value)appState.poles.push({poleNo:i[0].value,type:i[1].value,status:i[2].value})})}
-function saveDraft(){appState.savedAt=new Date().toISOString();try{localStorage.setItem(STATE_KEY,JSON.stringify(appState));const t=new Date(appState.savedAt);document.getElementById('statusDraft').textContent='SAVED '+t.getHours().toString().padStart(2,'0')+':'+t.getMinutes().toString().padStart(2,'0');document.getElementById('footerDraft').textContent='Draft Saved ✓'}catch(e){showToast('⚠️ Storage full')}updateAllCounters()}
+function saveDraft(){appState.savedAt=new Date().toISOString();try{localStorage.setItem(STATE_KEY,JSON.stringify(appState));const t=new Date(appState.savedAt);document.getElementById('statusDraft').textContent='SAVED '+t.getHours().toString().padStart(2,'0')+':'+t.getMinutes().toString().padStart(2,'0');document.getElementById('footerDraft').textContent='Draft ✓'}catch(e){}updateAllCounters()}
 function loadDraft(){try{const raw=localStorage.getItem(STATE_KEY);if(!raw)return;const s=JSON.parse(raw);Object.assign(appState,s);sv('projectName',appState.projectName);sv('schemeNo',appState.schemeNo);sv('schemeOther',appState.schemeOther);sv('villageName',appState.villageName);sv('feederName',appState.feederName);sv('supervisorName',appState.supervisorName);sv('contractorName',appState.contractorName);sv('workDate',appState.workDate);sv('workDesc',appState.workDesc);if(appState.schemeNo==='Other')document.getElementById('schemeOtherWrap').style.display='block';const sc=appState.schemeNo==='Other'?appState.schemeOther:appState.schemeNo;if(sc){document.getElementById('headerScheme').textContent='SCHEME: '+sc;document.getElementById('badgeScheme').textContent=sc}appState.materials.forEach(m=>addMaterialRow(m.name,m.qty,m.unit));appState.poles.forEach(p=>addPoleRow(p.poleNo,p.type,p.status));if(appState.photos&&appState.photos.length){appState.photos.forEach((p,i)=>renderPhotoCard(p,i));document.getElementById('noPhotos').style.display='none'}if(appState.savedAt){const t=new Date(appState.savedAt);document.getElementById('statusDraft').textContent='SAVED '+t.getHours().toString().padStart(2,'0')+':'+t.getMinutes().toString().padStart(2,'0')}}catch(e){}}
 function gv(id){return document.getElementById(id).value}
 function sv(id,v){document.getElementById(id).value=v||''}
-function updateAllCounters(){const pc=appState.photos.length;document.getElementById('statusPhotos').textContent='📷 '+pc;document.getElementById('badgePhotos').textContent=pc;const mc=appState.materials.length;document.getElementById('badgeMaterials').textContent=mc;const plc=appState.poles.length;document.getElementById('statusPoles').textContent='🏗 '+plc;document.getElementById('badgePoles').textContent=plc}
+function updateAllCounters(){const pc=appState.photos.length;document.getElementById('statusPhotos').textContent='📷 '+pc;document.getElementById('badgePhotos').textContent=pc;document.getElementById('badgeMaterials').textContent=appState.materials.length;const plc=appState.poles.length;document.getElementById('statusPoles').textContent='🏗 '+plc;document.getElementById('badgePoles').textContent=plc}
 
 // GPS
-let cachedGPS={lat:'N/A',lng:'N/A',accuracy:'N/A'},gpsWatchId=null;
-function initGPS(){if(!navigator.geolocation){updateGPSStatus(false,'No GPS');return}updateGPSStatus(false,'Locating...');navigator.geolocation.getCurrentPosition(p=>{cachedGPS={lat:p.coords.latitude.toFixed(6),lng:p.coords.longitude.toFixed(6),accuracy:Math.round(p.coords.accuracy)+'m'};updateGPSStatus(true,cachedGPS.lat+', '+cachedGPS.lng);showToast('📍 GPS locked! '+cachedGPS.accuracy)},e=>{updateGPSStatus(false,'GPS Failed');showToast('⚠️ Enable Location',3000)},{enableHighAccuracy:true,timeout:15000,maximumAge:0});gpsWatchId=navigator.geolocation.watchPosition(p=>{cachedGPS={lat:p.coords.latitude.toFixed(6),lng:p.coords.longitude.toFixed(6),accuracy:Math.round(p.coords.accuracy)+'m'};updateGPSStatus(true,cachedGPS.lat+', '+cachedGPS.lng)},()=>{},{enableHighAccuracy:true,timeout:15000,maximumAge:5000})}
+let cachedGPS={lat:'N/A',lng:'N/A',accuracy:'N/A'};
+function initGPS(){if(!navigator.geolocation){updateGPSStatus(false,'No GPS');return}updateGPSStatus(false,'Locating...');navigator.geolocation.getCurrentPosition(p=>{cachedGPS={lat:p.coords.latitude.toFixed(6),lng:p.coords.longitude.toFixed(6),accuracy:Math.round(p.coords.accuracy)+'m'};updateGPSStatus(true,cachedGPS.lat+', '+cachedGPS.lng);showToast('📍 GPS locked!')},()=>{updateGPSStatus(false,'GPS Failed')},{enableHighAccuracy:true,timeout:15000,maximumAge:0});navigator.geolocation.watchPosition(p=>{cachedGPS={lat:p.coords.latitude.toFixed(6),lng:p.coords.longitude.toFixed(6),accuracy:Math.round(p.coords.accuracy)+'m'};updateGPSStatus(true,cachedGPS.lat+', '+cachedGPS.lng)},()=>{},{enableHighAccuracy:true,timeout:15000,maximumAge:5000})}
 function updateGPSStatus(l,t){document.getElementById('dotGPS').className='dot '+(l?'dot-green':'dot-red');document.getElementById('statusGPS').textContent='📍 '+(t||'GPS...')}
 function getGPS(cb){if(cachedGPS.lat!=='N/A'){cb(cachedGPS);return}if(!navigator.geolocation){cb({lat:'N/A',lng:'N/A',accuracy:'N/A'});return}navigator.geolocation.getCurrentPosition(p=>{cachedGPS={lat:p.coords.latitude.toFixed(6),lng:p.coords.longitude.toFixed(6),accuracy:Math.round(p.coords.accuracy)+'m'};cb(cachedGPS)},()=>{cb({lat:'N/A',lng:'N/A',accuracy:'N/A'})},{enableHighAccuracy:true,timeout:15000,maximumAge:0})}
 
-// Photos
-document.getElementById('cameraInput').addEventListener('change',function(e){Array.from(e.target.files).forEach(f=>processPhoto(f));e.target.value=''});
-function processPhoto(file){const r=new FileReader();r.onload=function(e){const img=new Image();img.onload=function(){getGPS(function(gps){const wm=watermarkPhoto(img,gps);const po={image:wm,lat:gps.lat,lng:gps.lng,accuracy:gps.accuracy,time:new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}),timestamp:new Date().toISOString()};appState.photos.push(po);renderPhotoCard(po,appState.photos.length-1);document.getElementById('noPhotos').style.display='none';saveDraft();showToast('📷 Photo #'+appState.photos.length)})};img.src=e.target.result};r.readAsDataURL(file)}
-function watermarkPhoto(img,gps){const c=document.createElement('canvas');const M=1200;let w=img.width,h=img.height;if(w>M){h=h*(M/w);w=M}if(h>M){w=w*(M/h);h=M}c.width=w;c.height=h;const x=c.getContext('2d');x.drawImage(img,0,0,w,h);const lH=18;const sc=gv('schemeNo')==='Other'?gv('schemeOther'):gv('schemeNo');const lines=['AKA Enterprises | Scheme: '+(sc||'---'),'Village: '+(gv('villageName')||'---'),'Date: '+(gv('workDate')||'---')+' | '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'}),'Lat: '+gps.lat+' | Lng: '+gps.lng+' | Acc: '+gps.accuracy];const bH=lines.length*lH+16;x.fillStyle='rgba(0,0,0,0.65)';x.fillRect(0,h-bH,w,bH);x.fillStyle='#4CAF50';x.font='bold 13px monospace';lines.forEach((l,i)=>{x.fillText(l,10,h-bH+14+i*lH)});return c.toDataURL('image/jpeg',0.7)}
-function renderPhotoCard(p,i){const g=document.getElementById('photoGrid');const c=document.createElement('div');c.className='photo-card';c.innerHTML=`<img src="${p.image}" alt="P${i+1}"><div class="photo-num">#${i+1}</div><button class="photo-del" onclick="deletePhoto(${i})">&times;</button><div class="photo-meta"><span>📍 ${p.lat}, ${p.lng}</span><span>🎯 ${p.accuracy} | 🕐 ${p.time}</span></div>`;g.appendChild(c)}
+// PHOTOS (Entry)
+document.getElementById('cameraInput').addEventListener('change',function(e){Array.from(e.target.files).forEach(f=>processPhoto(f,'entry'));e.target.value=''});
+function processPhoto(file,target){const r=new FileReader();r.onload=function(e){const img=new Image();img.onload=function(){getGPS(function(gps){const wm=watermarkPhoto(img,gps,target);const po={image:wm,lat:gps.lat,lng:gps.lng,accuracy:gps.accuracy,time:new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}),timestamp:new Date().toISOString()};if(target==='entry'){appState.photos.push(po);renderPhotoCard(po,appState.photos.length-1);document.getElementById('noPhotos').style.display='none';saveDraft();showToast('📷 Photo #'+appState.photos.length)}else{maintPhotos.push(po);renderMaintPhotoCard(po,maintPhotos.length-1);showToast('📷 Maint photo #'+maintPhotos.length)}})};img.src=e.target.result};r.readAsDataURL(file)}
+function watermarkPhoto(img,gps,target){const c=document.createElement('canvas');const M=1200;let w=img.width,h=img.height;if(w>M){h=h*(M/w);w=M}if(h>M){w=w*(M/h);h=M}c.width=w;c.height=h;const x=c.getContext('2d');x.drawImage(img,0,0,w,h);const lH=18;const label=target==='entry'?('Scheme: '+(gv('schemeNo')==='Other'?gv('schemeOther'):gv('schemeNo')||'---')):('Maint: '+gv('maintType'));const lines=['AKA Enterprises | '+label,'Location: '+(target==='entry'?(gv('villageName')||'---'):(gv('maintLocation')||'---')),'Date: '+new Date().toLocaleDateString('en-IN')+' | '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'}),'Lat: '+gps.lat+' | Lng: '+gps.lng+' | Acc: '+gps.accuracy];const bH=lines.length*lH+16;x.fillStyle='rgba(0,0,0,0.65)';x.fillRect(0,h-bH,w,bH);x.fillStyle='#4CAF50';x.font='bold 13px monospace';lines.forEach((l,i)=>{x.fillText(l,10,h-bH+14+i*lH)});return c.toDataURL('image/jpeg',0.7)}
+function renderPhotoCard(p,i){const g=document.getElementById('photoGrid');const c=document.createElement('div');c.className='photo-card';c.innerHTML='<img src="'+p.image+'" alt="P'+(i+1)+'"><div class="photo-num">#'+(i+1)+'</div><button class="photo-del" onclick="deletePhoto('+i+')">&times;</button><div class="photo-meta"><span>📍 '+p.lat+', '+p.lng+'</span><span>🎯 '+p.accuracy+' | 🕐 '+p.time+'</span></div>';g.appendChild(c)}
 function deletePhoto(i){appState.photos.splice(i,1);rerenderPhotos();saveDraft()}
 function rerenderPhotos(){const g=document.getElementById('photoGrid');g.innerHTML='';if(appState.photos.length===0)g.innerHTML='<div class="no-photos" id="noPhotos">No photos yet</div>';else appState.photos.forEach((p,i)=>renderPhotoCard(p,i))}
 
+// MAINT PHOTOS
+document.getElementById('maintCameraInput').addEventListener('change',function(e){Array.from(e.target.files).forEach(f=>processPhoto(f,'maint'));e.target.value=''});
+function renderMaintPhotoCard(p,i){const g=document.getElementById('maintPhotoGrid');const c=document.createElement('div');c.className='photo-card';c.style.display='inline-block';c.style.width='48%';c.style.marginRight='4%';c.innerHTML='<img src="'+p.image+'" alt="M'+(i+1)+'" style="width:100%;border-radius:8px"><div style="font-family:var(--mono);font-size:9px;color:var(--txt3);margin-top:2px">📍 '+p.lat+', '+p.lng+'</div>';g.appendChild(c)}
+
 // Materials & Poles
-function addMaterialRow(n='',q='',u='Nos'){const w=document.getElementById('materialRows');const r=document.createElement('div');r.className='mat-row';r.innerHTML=`<input type="text" placeholder="Material" value="${n}"><input type="number" placeholder="Qty" value="${q}" min="0"><select><option ${u==='Nos'?'selected':''}>Nos</option><option ${u==='Bag'?'selected':''}>Bag</option><option ${u==='Cum'?'selected':''}>Cum</option><option ${u==='Kg'?'selected':''}>Kg</option><option ${u==='Mtr'?'selected':''}>Mtr</option><option ${u==='Set'?'selected':''}>Set</option><option ${u==='Ltr'?'selected':''}>Ltr</option><option ${u==='Coil'?'selected':''}>Coil</option><option ${u==='Bundle'?'selected':''}>Bundle</option></select><button class="mat-del" onclick="this.parentElement.remove();collectState();saveDraft();">&times;</button>`;r.querySelectorAll('input,select').forEach(el=>{el.addEventListener('change',()=>{collectState();saveDraft()});el.addEventListener('input',()=>{collectState();saveDraft()})});w.appendChild(r);collectState();saveDraft()}
-function addPoleRow(pn='',t='8m PSC',s='Pit Digging'){const w=document.getElementById('poleRows');const r=document.createElement('div');r.className='pole-row';const n=w.children.length+1;r.innerHTML=`<input type="text" placeholder="#" value="${pn||n}" style="text-align:center"><select><option ${t==='8m PSC'?'selected':''}>8m PSC</option><option ${t==='9m PSC'?'selected':''}>9m PSC</option><option ${t==='11m PSC'?'selected':''}>11m PSC</option><option ${t==='8m Rail'?'selected':''}>8m Rail</option><option ${t==='9m Rail'?'selected':''}>9m Rail</option><option ${t==='Tubular'?'selected':''}>Tubular</option></select><select><option ${s==='Pit Digging'?'selected':''}>Pit Digging</option><option ${s==='Pole Erected'?'selected':''}>Pole Erected</option><option ${s==='Backfilling'?'selected':''}>Backfilling</option><option ${s==='Complete'?'selected':''}>Complete</option></select><button class="mat-del" onclick="this.parentElement.remove();collectState();saveDraft();">&times;</button>`;r.querySelectorAll('input,select').forEach(el=>{el.addEventListener('change',()=>{collectState();saveDraft()});el.addEventListener('input',()=>{collectState();saveDraft()})});w.appendChild(r);collectState();saveDraft()}
+function addMaterialRow(n,q,u){n=n||'';q=q||'';u=u||'Nos';const w=document.getElementById('materialRows');const r=document.createElement('div');r.className='mat-row';r.innerHTML='<input type="text" placeholder="Material" value="'+n+'"><input type="number" placeholder="Qty" value="'+q+'" min="0"><select><option'+(u==='Nos'?' selected':'')+'>Nos</option><option'+(u==='Bag'?' selected':'')+'>Bag</option><option'+(u==='Cum'?' selected':'')+'>Cum</option><option'+(u==='Kg'?' selected':'')+'>Kg</option><option'+(u==='Mtr'?' selected':'')+'>Mtr</option><option'+(u==='Set'?' selected':'')+'>Set</option><option'+(u==='Ltr'?' selected':'')+'>Ltr</option><option'+(u==='Coil'?' selected':'')+'>Coil</option><option'+(u==='Bundle'?' selected':'')+'>Bundle</option></select><button class="mat-del" onclick="this.parentElement.remove();collectState();saveDraft();">&times;</button>';r.querySelectorAll('input,select').forEach(el=>{el.addEventListener('change',()=>{collectState();saveDraft()});el.addEventListener('input',()=>{collectState();saveDraft()})});w.appendChild(r);collectState();saveDraft()}
+function addPoleRow(pn,t,s){pn=pn||'';t=t||'8m PSC';s=s||'Pit Digging';const w=document.getElementById('poleRows');const r=document.createElement('div');r.className='pole-row';const n=w.children.length+1;r.innerHTML='<input type="text" placeholder="#" value="'+(pn||n)+'" style="text-align:center"><select><option'+(t==='8m PSC'?' selected':'')+'>8m PSC</option><option'+(t==='9m PSC'?' selected':'')+'>9m PSC</option><option'+(t==='11m PSC'?' selected':'')+'>11m PSC</option><option'+(t==='8m Rail'?' selected':'')+'>8m Rail</option><option'+(t==='9m Rail'?' selected':'')+'>9m Rail</option><option'+(t==='Tubular'?' selected':'')+'>Tubular</option></select><select><option'+(s==='Pit Digging'?' selected':'')+'>Pit Digging</option><option'+(s==='Pole Erected'?' selected':'')+'>Pole Erected</option><option'+(s==='Backfilling'?' selected':'')+'>Backfilling</option><option'+(s==='Complete'?' selected':'')+'>Complete</option></select><button class="mat-del" onclick="this.parentElement.remove();collectState();saveDraft();">&times;</button>';r.querySelectorAll('input,select').forEach(el=>{el.addEventListener('change',()=>{collectState();saveDraft()});el.addEventListener('input',()=>{collectState();saveDraft()})});w.appendChild(r);collectState();saveDraft()}
 
 // Voice
 let recognition=null,isRecording=false;
-function toggleVoice(){const b=document.getElementById('voiceBtn');const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){showToast('⚠️ Voice not supported. Use Chrome.',3000);return}if(isRecording){recognition.stop();isRecording=false;b.classList.remove('recording');b.innerHTML='🎤 Voice';return}recognition=new SR();recognition.lang='hi-IN';recognition.continuous=true;recognition.interimResults=true;isRecording=true;b.classList.add('recording');b.innerHTML='⏹ Stop';recognition.onresult=function(e){let t='';for(let i=e.resultIndex;i<e.results.length;i++)t+=e.results[i][0].transcript;const d=document.getElementById('workDesc');if(e.results[e.results.length-1].isFinal){d.value+=(d.value?' ':'')+t;collectState();saveDraft()}};recognition.onerror=function(){isRecording=false;b.classList.remove('recording');b.innerHTML='🎤 Voice'};recognition.onend=function(){if(isRecording)try{recognition.start()}catch(e){}};try{recognition.start();showToast('🎤 Listening...')}catch(e){isRecording=false;b.classList.remove('recording');b.innerHTML='🎤 Voice'}}
+function toggleVoice(){const b=document.getElementById('voiceBtn');const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){showToast('⚠️ Use Chrome for voice',3000);return}if(isRecording){recognition.stop();isRecording=false;b.classList.remove('recording');b.innerHTML='🎤 Voice';return}recognition=new SR();recognition.lang='hi-IN';recognition.continuous=true;recognition.interimResults=true;isRecording=true;b.classList.add('recording');b.innerHTML='⏹ Stop';recognition.onresult=function(e){let t='';for(let i=e.resultIndex;i<e.results.length;i++)t+=e.results[i][0].transcript;const d=document.getElementById('workDesc');if(e.results[e.results.length-1].isFinal){d.value+=(d.value?' ':'')+t;collectState();saveDraft()}};recognition.onerror=function(){isRecording=false;b.classList.remove('recording');b.innerHTML='🎤 Voice'};recognition.onend=function(){if(isRecording)try{recognition.start()}catch(e){}};try{recognition.start();showToast('🎤 Listening...')}catch(e){isRecording=false}}
 
 // Clear & Submit
 function showClearModal(){document.getElementById('clearModal').classList.add('open')}
@@ -309,30 +344,78 @@ function finalSubmit(){collectState();const sc=appState.schemeNo==='Other'?appSt
 
 // Records
 function getRecords(){try{return JSON.parse(localStorage.getItem(RECORDS_KEY)||'[]')}catch(e){return[]}}
-function renderRecords(){const recs=getRecords();const l=document.getElementById('recordsList');document.getElementById('badgeRecords').textContent=recs.length;if(recs.length===0){l.innerHTML='<div class="no-records">No records yet.</div>';return}l.innerHTML='';recs.forEach((r,i)=>{const d=document.createElement('div');d.className='record-item';d.onclick=()=>showRecordDetail(i);d.innerHTML=`<div class="record-top"><span class="record-scheme">Scheme ${r.scheme}</span><span class="record-date">${r.date||'--'}</span></div><div class="record-info">${r.village||'--'} | ${r.feeder||'--'}</div><div class="record-stats"><span>📷 ${r.photoCount||0}</span><span>🧱 ${(r.materials||[]).length}</span><span>🏗 ${(r.poles||[]).length} (${r.completedPoles||0}✓)</span></div>`;l.appendChild(d)})}
-function showRecordDetail(idx){const recs=getRecords();const r=recs[idx];if(!r)return;const d=document.getElementById('recordDetail');let h=`<h3 style="color:var(--green)">Scheme ${r.scheme}</h3><p style="font-size:12px;color:var(--txt2);margin:6px 0">${r.village} | ${r.feeder} | ${r.date}</p><p style="font-size:11px;margin:4px 0"><b>Project:</b> ${r.project||'--'}</p><p style="font-size:11px;margin:4px 0"><b>Supervisor:</b> ${r.supervisor||'--'} | <b>Contractor:</b> ${r.contractor||'--'}</p><p style="font-size:11px;margin:4px 0 8px"><b>Description:</b> ${r.description||'--'}</p>`;if(r.materials&&r.materials.length){h+=`<p style="font-size:11px;font-weight:700">Materials (${r.materials.length}):</p>`;r.materials.forEach(m=>{h+=`<p style="font-size:11px;color:var(--txt2)">• ${m.name}: ${m.qty} ${m.unit}</p>`})}if(r.poles&&r.poles.length){h+=`<p style="font-size:11px;font-weight:700;margin-top:6px">Poles (${r.poles.length}):</p>`;r.poles.forEach(p=>{h+=`<p style="font-size:11px;color:var(--txt2)">• #${p.poleNo} ${p.type} — ${p.status}</p>`})}d.innerHTML=h;document.getElementById('exportSingleBtn').onclick=()=>exportSingleExcel(idx);document.getElementById('recordModal').classList.add('open')}
+function renderRecords(){const recs=getRecords();const l=document.getElementById('recordsList');document.getElementById('badgeRecords').textContent=recs.length;if(!recs.length){l.innerHTML='<div class="no-records">No records yet.</div>';return}l.innerHTML='';recs.forEach((r,i)=>{const d=document.createElement('div');d.className='record-item';d.onclick=()=>showRecordDetail(i);d.innerHTML='<div class="record-top"><span class="record-scheme">Scheme '+r.scheme+'</span><span class="record-date">'+(r.date||'--')+'</span></div><div class="record-info">'+(r.village||'--')+' | '+(r.feeder||'--')+'</div><div class="record-stats"><span>📷 '+(r.photoCount||0)+'</span><span>🧱 '+(r.materials||[]).length+'</span><span>🏗 '+(r.poles||[]).length+' ('+(r.completedPoles||0)+'✓)</span></div>';l.appendChild(d)})}
+function showRecordDetail(idx){const r=getRecords()[idx];if(!r)return;const d=document.getElementById('recordDetail');let h='<h3 style="color:var(--green)">Scheme '+r.scheme+'</h3><p style="font-size:12px;color:var(--txt2);margin:6px 0">'+r.village+' | '+r.feeder+' | '+r.date+'</p><p style="font-size:11px;margin:4px 0"><b>Project:</b> '+(r.project||'--')+'</p><p style="font-size:11px;margin:4px 0"><b>Supervisor:</b> '+(r.supervisor||'--')+' | <b>Contractor:</b> '+(r.contractor||'--')+'</p>';if(r.description)h+='<p style="font-size:11px;margin:4px 0 8px"><b>Work:</b> '+r.description+'</p>';if(r.poles&&r.poles.length){h+='<p style="font-size:11px;font-weight:700;color:var(--green);margin-top:6px">Poles ('+r.poles.length+'):</p>';r.poles.forEach(p=>{h+='<p style="font-size:11px;color:var(--txt2)">• #'+p.poleNo+' '+p.type+' — '+p.status+'</p>'})}if(r.photos&&r.photos.length){h+='<p style="font-size:11px;font-weight:700;color:var(--green);margin-top:6px">GPS ('+r.photos.length+' photos):</p>';r.photos.forEach((p,i)=>{h+='<p style="font-family:var(--mono);font-size:10px;color:var(--txt3)">📍#'+(i+1)+' Lat:'+p.lat+' Lng:'+p.lng+' Acc:'+p.accuracy+' @'+p.time+'</p>'})}if(r.materials&&r.materials.length){h+='<p style="font-size:11px;font-weight:700;color:var(--green);margin-top:6px">Materials:</p>';r.materials.forEach(m=>{h+='<p style="font-size:11px;color:var(--txt2)">• '+m.name+': '+m.qty+' '+m.unit+'</p>'})}d.innerHTML=h;document.getElementById('exportSingleBtn').onclick=()=>exportSingleExcel(idx);document.getElementById('recordModal').classList.add('open')}
 function closeRecordModal(){document.getElementById('recordModal').classList.remove('open')}
 function clearAllRecords(){if(confirm('Delete ALL pole work records?')){localStorage.removeItem(RECORDS_KEY);renderRecords();updateDashboard();showToast('🗑 Deleted')}}
 
 // MAINTENANCE
 function getMaint(){try{return JSON.parse(localStorage.getItem(MAINT_KEY)||'[]')}catch(e){return[]}}
-function saveMaintenance(){const loc=gv('maintLocation');if(!loc){showToast('⚠️ Enter Location');return}const rec={id:Date.now(),type:gv('maintType'),priority:gv('maintPriority'),date:gv('maintDate'),status:gv('maintStatus'),location:loc,feeder:gv('maintFeeder'),assigned:gv('maintAssigned'),description:gv('maintDesc'),material:gv('maintMaterial'),createdAt:new Date().toISOString()};let recs=getMaint();recs.unshift(rec);try{localStorage.setItem(MAINT_KEY,JSON.stringify(recs))}catch(e){}sv('maintLocation','');sv('maintFeeder','');sv('maintAssigned','');sv('maintDesc','');sv('maintMaterial','');renderMaint();updateDashboard();showToast('🔧 Maintenance saved!')}
-function renderMaint(){const recs=getMaint();const l=document.getElementById('maintList');document.getElementById('badgeMaint').textContent=recs.length;if(recs.length===0){l.innerHTML='<div class="no-records">No maintenance records</div>';return}l.innerHTML='';recs.forEach((r,i)=>{const d=document.createElement('div');d.className='maint-item priority-'+r.priority;d.innerHTML=`<div class="maint-top"><span class="maint-type">🔧 ${r.type}</span><span class="maint-date">${r.date}</span></div><div class="maint-loc">📍 ${r.location} | ${r.feeder||'--'} | ${r.status}</div><div class="maint-desc">${r.assigned?'👷 '+r.assigned:''} ${r.description?'— '+r.description.substring(0,60):''}</div>`;l.appendChild(d)})}
+function addMaintMaterialRow(n,q,u){n=n||'';q=q||'';u=u||'Nos';const w=document.getElementById('maintMaterialRows');const r=document.createElement('div');r.className='mat-row';r.innerHTML='<input type="text" placeholder="Material" value="'+n+'"><input type="number" placeholder="Qty" value="'+q+'" min="0"><select><option'+(u==='Nos'?' selected':'')+'>Nos</option><option'+(u==='Bag'?' selected':'')+'>Bag</option><option'+(u==='Cum'?' selected':'')+'>Cum</option><option'+(u==='Kg'?' selected':'')+'>Kg</option><option'+(u==='Mtr'?' selected':'')+'>Mtr</option><option'+(u==='Set'?' selected':'')+'>Set</option><option'+(u==='Ltr'?' selected':'')+'>Ltr</option><option'+(u==='Coil'?' selected':'')+'>Coil</option><option'+(u==='Bundle'?' selected':'')+'>Bundle</option></select><button class="mat-del" onclick="this.parentElement.remove()">&times;</button>';w.appendChild(r)}
+function collectMaintMaterials(){const rows=document.querySelectorAll('#maintMaterialRows .mat-row');const mats=[];rows.forEach(r=>{const i=r.querySelectorAll('input,select');if(i[0].value)mats.push({name:i[0].value,qty:i[1].value,unit:i[2].value})});return mats}
+function saveMaintenance(){const loc=gv('maintLocation');if(!loc){showToast('⚠️ Enter Location');return}const mats=collectMaintMaterials();const rec={id:Date.now(),type:gv('maintType'),priority:gv('maintPriority'),date:gv('maintDate'),status:gv('maintStatus'),location:loc,feeder:gv('maintFeeder'),assigned:gv('maintAssigned'),description:gv('maintDesc'),materials:mats,photos:maintPhotos.map(p=>({lat:p.lat,lng:p.lng,accuracy:p.accuracy,time:p.time})),photoCount:maintPhotos.length,createdAt:new Date().toISOString()};let recs=getMaint();recs.unshift(rec);try{localStorage.setItem(MAINT_KEY,JSON.stringify(recs))}catch(e){}sv('maintLocation','');sv('maintFeeder','');sv('maintAssigned','');sv('maintDesc','');document.getElementById('maintMaterialRows').innerHTML='';maintPhotos=[];document.getElementById('maintPhotoGrid').innerHTML='';renderMaint();updateDashboard();showToast('🔧 Saved!')}
+function renderMaint(){const recs=getMaint();const l=document.getElementById('maintList');document.getElementById('badgeMaint').textContent=recs.length;if(!recs.length){l.innerHTML='<div class="no-records">No maintenance records</div>';return}l.innerHTML='';recs.forEach(r=>{const d=document.createElement('div');d.className='maint-item priority-'+r.priority;let gpsHtml='';if(r.photos&&r.photos.length){r.photos.forEach((p,i)=>{gpsHtml+='<div class="maint-gps">📍#'+(i+1)+' Lat:'+p.lat+' Lng:'+p.lng+' ('+p.accuracy+') @'+p.time+'</div>'})}let matHtml='';const mats=r.materials||[];if(mats.length){matHtml='<div style="font-size:10px;color:var(--txt2);margin-top:3px">🧱 ';matHtml+=mats.map(m=>m.name+': '+m.qty+' '+m.unit).join(' | ');matHtml+='</div>'}else if(r.material){matHtml='<div style="font-size:10px;color:var(--txt2);margin-top:3px">🧱 '+r.material+'</div>'}d.innerHTML='<div class="maint-top"><span class="maint-type">🔧 '+r.type+'</span><span class="maint-date">'+r.date+'</span></div><div class="maint-loc">📍 '+r.location+' | '+(r.feeder||'--')+' | '+r.status+(r.photoCount?' | 📷'+r.photoCount:'')+'</div><div class="maint-desc">'+(r.assigned?'👷 '+r.assigned:'')+' '+(r.description?'— '+r.description.substring(0,80):'')+'</div>'+matHtml+gpsHtml;l.appendChild(d)})}
 function clearAllMaint(){if(confirm('Delete ALL maintenance records?')){localStorage.removeItem(MAINT_KEY);renderMaint();updateDashboard();showToast('🗑 Deleted')}}
-function exportMaintExcel(){const recs=getMaint();if(recs.length===0){showToast('⚠️ No records');return}let c='Date,Type,Priority,Status,Location,Feeder,Assigned To,Description,Material Used\n';recs.forEach(r=>{c+=[r.date,r.type,r.priority,r.status,r.location,r.feeder,r.assigned,'"'+(r.description||'').replace(/"/g,'""')+'"','"'+(r.material||'')+'"'].join(',')+"\n"});downloadCSV(c,'AKA_Maintenance.csv');showToast('📊 Exported!')}
+
+// REPORT - Grouped by Project Name
+function generateReport(){const recs=getRecords();const maints=getMaint();const filter=gv('reportFilter');
+// Build project filter dropdown
+const sel=document.getElementById('reportFilter');const projects=new Set();recs.forEach(r=>{projects.add(r.project||'Unnamed')});maints.forEach(m=>{projects.add('MAINT: '+m.type)});const currentVal=sel.value;sel.innerHTML='<option value="all">All Projects</option>';projects.forEach(p=>{sel.innerHTML+='<option value="'+p+'">'+p+'</option>'});sel.value=currentVal||'all';
+const rc=document.getElementById('reportContent');
+if(!recs.length&&!maints.length){rc.innerHTML='<div class="no-records">No data. Submit entries first.</div>';return}
+// Group pole work by project
+const grouped={};recs.forEach(r=>{const pn=r.project||'Unnamed';if(filter!=='all'&&pn!==filter)return;if(!grouped[pn])grouped[pn]=[];grouped[pn].push(r)});
+let html='';
+for(const[proj,entries] of Object.entries(grouped)){
+let tp=0,cp=0,tph=0;entries.forEach(e=>{tp+=(e.poles||[]).length;cp+=e.completedPoles||0;tph+=e.photoCount||0});
+html+='<div style="background:var(--green);color:#fff;padding:12px;border-radius:var(--radius);margin:10px 0 6px"><div style="font-size:16px;font-weight:800">'+proj+'</div><div style="font-size:11px;opacity:.8;font-family:var(--mono)">'+entries.length+' entries | '+tp+' poles ('+cp+' done) | '+tph+' photos</div></div>';
+entries.forEach(r=>{
+html+='<div style="background:var(--bg2);border:1px solid var(--bg4);border-radius:var(--radius);margin:4px 0;overflow:hidden">';
+html+='<div style="padding:8px 12px;background:var(--green-glow);border-bottom:1px solid var(--bg3);display:flex;justify-content:space-between"><span style="font-family:var(--mono);font-weight:700;font-size:12px;color:var(--green)">Scheme '+r.scheme+'</span><span style="font-family:var(--mono);font-size:10px;color:var(--txt3)">'+(r.date||'--')+'</span></div>';
+html+='<div style="padding:10px 12px;font-size:11px">';
+html+='<div style="display:flex;margin-bottom:3px"><b style="min-width:80px;color:var(--txt2)">Village:</b><span>'+(r.village||'--')+'</span></div>';
+html+='<div style="display:flex;margin-bottom:3px"><b style="min-width:80px;color:var(--txt2)">Feeder:</b><span>'+(r.feeder||'--')+'</span></div>';
+html+='<div style="display:flex;margin-bottom:3px"><b style="min-width:80px;color:var(--txt2)">Supervisor:</b><span>'+(r.supervisor||'--')+'</span></div>';
+html+='<div style="display:flex;margin-bottom:3px"><b style="min-width:80px;color:var(--txt2)">Contractor:</b><span>'+(r.contractor||'--')+'</span></div>';
+if(r.description)html+='<div style="display:flex;margin-bottom:3px"><b style="min-width:80px;color:var(--txt2)">Work:</b><span>'+r.description+'</span></div>';
+if(r.poles&&r.poles.length){
+html+='<div style="font-weight:700;color:var(--green);margin:8px 0 4px;padding-top:6px;border-top:1px solid var(--bg3)">🏗 Poles ('+r.poles.length+')</div>';
+html+='<div style="display:grid;grid-template-columns:45px 1fr 1fr;gap:4px;font-weight:700;font-size:10px;color:var(--txt2);padding:3px 0;border-bottom:1px solid var(--bg4)"><span>#</span><span>Type</span><span>Status</span></div>';
+r.poles.forEach(p=>{const clr=p.status==='Complete'?'var(--green)':p.status==='Pole Erected'?'var(--blue)':'var(--txt2)';
+html+='<div style="display:grid;grid-template-columns:45px 1fr 1fr;gap:4px;padding:3px 0;border-bottom:1px dashed var(--bg3)"><span>#'+p.poleNo+'</span><span>'+p.type+'</span><span style="color:'+clr+';font-weight:600">'+p.status+'</span></div>'})}
+if(r.photos&&r.photos.length){
+html+='<div style="font-weight:700;color:var(--green);margin:8px 0 4px;padding-top:6px;border-top:1px solid var(--bg3)">📍 GPS Coordinates ('+r.photos.length+' photos)</div>';
+r.photos.forEach((p,i)=>{html+='<div style="font-family:var(--mono);font-size:10px;color:var(--txt3);padding:2px 0">📷 #'+(i+1)+': Lat '+p.lat+' | Lng '+p.lng+' | Acc: '+p.accuracy+' | '+p.time+'</div>'})}
+if(r.materials&&r.materials.length){
+html+='<div style="font-weight:700;color:var(--green);margin:8px 0 4px;padding-top:6px;border-top:1px solid var(--bg3)">🧱 Materials ('+r.materials.length+')</div>';
+r.materials.forEach(m=>{html+='<div style="padding:2px 0;color:var(--txt2)">• '+m.name+': '+m.qty+' '+m.unit+'</div>'})}
+html+='<div style="margin-top:6px;font-family:var(--mono);font-size:9px;color:var(--txt3)">Submitted: '+new Date(r.submittedAt).toLocaleString('en-IN')+'</div>';
+html+='</div></div>'})}
+// Add maintenance section if filter is all or maint type
+if(filter==='all'&&maints.length){
+html+='<div style="background:var(--orange);color:#fff;padding:12px;border-radius:var(--radius);margin:14px 0 6px"><div style="font-size:16px;font-weight:800">🔧 Maintenance Records</div><div style="font-size:11px;opacity:.8;font-family:var(--mono)">'+maints.length+' jobs | '+maints.filter(m=>m.status==='Pending').length+' pending</div></div>';
+maints.forEach(m=>{
+html+='<div style="background:var(--bg2);border:1px solid var(--bg4);border-radius:var(--radius);margin:4px 0;padding:10px 12px;border-left:3px solid '+(m.priority==='high'?'var(--red)':m.priority==='medium'?'var(--orange)':'var(--green)')+'">';
+html+='<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-weight:700;color:var(--orange)">🔧 '+m.type+'</span><span style="font-family:var(--mono);font-size:10px;color:var(--txt3)">'+m.date+'</span></div>';
+html+='<div style="font-size:11px;color:var(--txt2)">📍 '+m.location+' | '+(m.feeder||'--')+' | '+m.status+'</div>';
+if(m.assigned)html+='<div style="font-size:11px;color:var(--txt2)">👷 '+m.assigned+'</div>';
+if(m.description)html+='<div style="font-size:11px;color:var(--txt3)">'+m.description+'</div>';
+if(m.materials&&m.materials.length){html+='<div style="font-size:11px;font-weight:700;color:var(--orange);margin-top:4px">🧱 Materials ('+m.materials.length+'):</div>';m.materials.forEach(mt=>{html+='<div style="font-size:11px;color:var(--txt2)">• '+mt.name+': '+mt.qty+' '+mt.unit+'</div>'})}else if(m.material){html+='<div style="font-size:11px;color:var(--txt2)">🧱 '+m.material+'</div>'}
+if(m.photos&&m.photos.length){m.photos.forEach((p,i)=>{html+='<div style="font-family:var(--mono);font-size:9px;color:var(--txt3)">📷 #'+(i+1)+': Lat '+p.lat+' | Lng '+p.lng+' | '+p.accuracy+' | '+p.time+'</div>'})}
+html+='</div>'})}
+rc.innerHTML=html||'<div class="no-records">No data for selected filter</div>'}
 
 // DASHBOARD
-function updateDashboard(){const recs=getRecords();const maints=getMaint();document.getElementById('dashDate').textContent=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});let totalPoles=0,completed=0,totalPhotos=0;recs.forEach(r=>{totalPoles+=(r.poles||[]).length;completed+=r.completedPoles||0;totalPhotos+=r.photoCount||0});document.getElementById('dashTotalPoles').textContent=totalPoles;document.getElementById('dashCompleted').textContent=completed;document.getElementById('dashPhotos').textContent=totalPhotos;document.getElementById('dashReports').textContent=recs.length;document.getElementById('dashMaint').textContent=maints.length;document.getElementById('dashPending').textContent=maints.filter(m=>m.status==='Pending').length;
-// Scheme progress
-const schemes={};recs.forEach(r=>{if(!schemes[r.scheme])schemes[r.scheme]={total:0,done:0};schemes[r.scheme].total+=(r.poles||[]).length;schemes[r.scheme].done+=r.completedPoles||0});const sp=document.getElementById('schemeProgress');if(Object.keys(schemes).length===0){sp.innerHTML='<div class="no-records">Submit reports to see progress</div>'}else{let h='';for(const[k,v] of Object.entries(schemes)){const pct=v.total?Math.round((v.done/v.total)*100):0;h+=`<div class="scheme-bar"><span style="min-width:40px;font-weight:700">${k}</span><div class="scheme-bar-fill"><div style="width:${pct}%"></div></div><span class="scheme-bar-label">${v.done}/${v.total}</span></div>`}sp.innerHTML=h}
-// Recent activity
-const all=[...recs.map(r=>({type:'📝',text:'Scheme '+r.scheme+' — '+r.village,date:r.submittedAt})),...maints.map(m=>({type:'🔧',text:m.type+' — '+m.location,date:m.createdAt}))].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5);const ra=document.getElementById('recentActivity');if(all.length===0){ra.innerHTML='<div class="no-records">No activity</div>'}else{let h='';all.forEach(a=>{const d=new Date(a.date);const ds=d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});h+=`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bg3);font-size:11px"><span>${a.type} ${a.text}</span><span style="font-family:var(--mono);font-size:9px;color:var(--txt3)">${ds}</span></div>`});ra.innerHTML=h}}
+function updateDashboard(){const recs=getRecords();const maints=getMaint();document.getElementById('dashDate').textContent=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});let tp=0,cp=0,tph=0;recs.forEach(r=>{tp+=(r.poles||[]).length;cp+=r.completedPoles||0;tph+=r.photoCount||0});document.getElementById('dashTotalPoles').textContent=tp;document.getElementById('dashCompleted').textContent=cp;document.getElementById('dashPhotos').textContent=tph;document.getElementById('dashReports').textContent=recs.length;document.getElementById('dashMaint').textContent=maints.length;document.getElementById('dashPending').textContent=maints.filter(m=>m.status==='Pending').length;
+const schemes={};recs.forEach(r=>{if(!schemes[r.scheme])schemes[r.scheme]={total:0,done:0};schemes[r.scheme].total+=(r.poles||[]).length;schemes[r.scheme].done+=r.completedPoles||0});const sp=document.getElementById('schemeProgress');if(!Object.keys(schemes).length){sp.innerHTML='<div class="no-records">Submit reports to see progress</div>'}else{let h='';for(const[k,v] of Object.entries(schemes)){const pct=v.total?Math.round((v.done/v.total)*100):0;h+='<div class="scheme-bar"><span style="min-width:40px;font-weight:700">'+k+'</span><div class="scheme-bar-fill"><div style="width:'+pct+'%"></div></div><span class="scheme-bar-label">'+v.done+'/'+v.total+'</span></div>'}sp.innerHTML=h}
+const all=[...recs.map(r=>({type:'📝',text:'Scheme '+r.scheme+' — '+r.village,date:r.submittedAt})),...maints.map(m=>({type:'🔧',text:m.type+' — '+m.location,date:m.createdAt}))].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5);const ra=document.getElementById('recentActivity');if(!all.length){ra.innerHTML='<div class="no-records">No activity</div>'}else{let h='';all.forEach(a=>{const d=new Date(a.date);const ds=d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});h+='<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bg3);font-size:11px"><span>'+a.type+' '+a.text+'</span><span style="font-family:var(--mono);font-size:9px;color:var(--txt3)">'+ds+'</span></div>'});ra.innerHTML=h}}
 
-// Excel export
-function generateCSV(recs){let c='Date,Scheme,Project,Village,Feeder,Supervisor,Contractor,Description,Photos,Materials,Poles,Completed,Submitted\n';recs.forEach(r=>{const mats=(r.materials||[]).map(m=>m.name+':'+m.qty+' '+m.unit).join('; ');const poles=(r.poles||[]).map(p=>'#'+p.poleNo+' '+p.type+' '+p.status).join('; ');c+=[r.date,r.scheme,'"'+(r.project||'').replace(/"/g,'""')+'"',r.village,r.feeder,r.supervisor,r.contractor,'"'+(r.description||'').replace(/"/g,'""')+'"',r.photoCount||0,'"'+mats+'"','"'+poles+'"',r.completedPoles||0,r.submittedAt].join(',')+"\n"});return c}
+// Excel exports
+function generateCSV(recs){let c='Date,Scheme,Project,Village,Feeder,Supervisor,Contractor,Description,Photos,GPS_Coordinates,Materials,Poles,Completed,Submitted\n';recs.forEach(r=>{const mats=(r.materials||[]).map(m=>m.name+':'+m.qty+' '+m.unit).join('; ');const poles=(r.poles||[]).map(p=>'#'+p.poleNo+' '+p.type+' '+p.status).join('; ');const gps=(r.photos||[]).map((p,i)=>'#'+(i+1)+' Lat:'+p.lat+' Lng:'+p.lng+' Acc:'+p.accuracy).join('; ');c+=[r.date,r.scheme,'"'+(r.project||'').replace(/"/g,'""')+'"',r.village,r.feeder,r.supervisor,r.contractor,'"'+(r.description||'').replace(/"/g,'""')+'"',r.photoCount||0,'"'+gps+'"','"'+mats+'"','"'+poles+'"',r.completedPoles||0,r.submittedAt].join(',')+"\n"});return c}
 function downloadCSV(csv,fn){const b=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=fn;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(u)}
-function exportAllExcel(){const r=getRecords();if(r.length===0){showToast('⚠️ No records');return}downloadCSV(generateCSV(r),'AKA_PoleWork_All.csv');showToast('📊 Downloaded!')}
+function exportAllExcel(){const r=getRecords();if(!r.length){showToast('⚠️ No records');return}downloadCSV(generateCSV(r),'AKA_PoleWork_All.csv');showToast('📊 Downloaded!')}
 function exportSingleExcel(i){const r=getRecords()[i];if(!r)return;downloadCSV(generateCSV([r]),'AKA_'+r.scheme+'_'+r.date+'.csv');showToast('📊 Exported!')}
+function exportMaintExcel(){const recs=getMaint();if(!recs.length){showToast('⚠️ No records');return}let c='Date,Type,Priority,Status,Location,Feeder,Assigned,Description,Materials,Photos,GPS\n';recs.forEach(r=>{const gps=(r.photos||[]).map((p,i)=>'#'+(i+1)+' Lat:'+p.lat+' Lng:'+p.lng).join('; ');const mats=(r.materials||[]).map(m=>m.name+':'+m.qty+' '+m.unit).join('; ')||(r.material||'');c+=[r.date,r.type,r.priority,r.status,r.location,r.feeder,r.assigned,'"'+(r.description||'').replace(/"/g,'""')+'"','"'+mats+'"',r.photoCount||0,'"'+gps+'"'].join(',')+"\n"});downloadCSV(c,'AKA_Maintenance.csv');showToast('📊 Exported!')}
 
 // Theme
 document.getElementById('btnDarkMode').addEventListener('click',()=>{document.body.classList.toggle('dark-mode');const d=document.body.classList.contains('dark-mode');localStorage.setItem('pole_theme',d?'dark':'light');document.getElementById('btnDarkMode').textContent=d?'☀️':'🌙'});
@@ -340,7 +423,7 @@ if(localStorage.getItem('pole_theme')==='dark'){document.body.classList.add('dar
 // PWA
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('btnInstall').style.display='grid'});
 document.getElementById('btnInstall').addEventListener('click',()=>{if(!deferredPrompt)return;deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted')showToast('✅ Installed!');deferredPrompt=null;document.getElementById('btnInstall').style.display='none'})});
-function showToast(m,d=2000){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),d)}
+function showToast(m,d){d=d||2000;const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),d)}
 setInterval(updateAllCounters,5000);
 </script>
 </body>
